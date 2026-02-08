@@ -342,7 +342,7 @@ class FallbackSpeechStream extends SpeechStream {
     }
 
     const connOptions: APIConnectOptions = {
-      ...this.connOptions,
+      ...this._connOpts,
       maxRetry: 0,
       timeoutMs: this.adapter.attemptTimeout * 1000,
     };
