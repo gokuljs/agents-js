@@ -31,7 +31,7 @@ export interface AvailabilityChangedEvent {
   available: boolean;
 }
 
-class FallbackAdapter extends STT {
+export class FallbackAdapter extends STT {
   label = 'stt.FallbackAdapter';
   readonly sttInstances: STT[];
   readonly attemptTimeout: number;
