@@ -46,7 +46,7 @@ export class FallbackAdapter extends STT {
     if (sttList.length < 1) {
       throw new Error('At least one STT instances must be provided');
     }
-    const nonStreamingSTT = options.stt.filter((s) => !s.capabilities.streaming);
+    const nonStreamingSTT = sttList.filter((s) => !s.capabilities.streaming);
     if (nonStreamingSTT.length > 0) {
       if (!options.vad) {
         const labels = nonStreamingSTT.map((s) => s.label).join(', ');
