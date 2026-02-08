@@ -212,10 +212,12 @@ class FallbackSpeechStream extends SpeechStream {
   private adapter: FallbackAdapter;
   private recoveringStreams: SpeechStream[] = [];
   private _log = log();
+  private _connOpts: APIConnectOptions;
 
   constructor(adapter: FallbackAdapter, opts: { connOptions: APIConnectOptions }) {
     super(adapter, undefined, opts.connOptions);
     this.adapter = adapter;
+    this._connOpts = opts.connOptions;
   }
 
   protected async run(): Promise<void> {
@@ -282,7 +284,7 @@ class FallbackSpeechStream extends SpeechStream {
       if (status.available || allFailed) {
         try {
           const connOptions: APIConnectOptions = {
-            ...this.connOptions,
+            ...this._connOpts,
             maxRetry: this.adapter.maxRetryPerSTT,
             timeoutMs: this.adapter.attemptTimeout * 1000,
             retryIntervalMs: this.adapter.retryInterval * 1000,
